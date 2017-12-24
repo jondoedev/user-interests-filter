@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Хост:                         DCODE
--- Версия сервера:               10.1.25-MariaDB - MariaDB Server
--- Операционная система:         Linux
+-- Хост:                         127.0.0.1
+-- Версия сервера:               10.1.22-MariaDB - mariadb.org binary distribution
+-- Операционная система:         Win32
 -- HeidiSQL Версия:              9.4.0.5125
 -- --------------------------------------------------------
 
@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS `interests` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы kalenyuk-mysql-task-db.interests: ~7 rows (приблизительно)
-DELETE FROM `interests`;
 /*!40000 ALTER TABLE `interests` DISABLE KEYS */;
 INSERT INTO `interests` (`id`, `name`, `created_at`, `updated_at`) VALUES
 	(1, 'programming', NULL, NULL),
@@ -44,24 +43,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `first_name` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
-  `age` int(11) DEFAULT NULL,
+  `birth_date` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы kalenyuk-mysql-task-db.users: ~8 rows (приблизительно)
-DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `age`, `created_at`, `updated_at`) VALUES
-	(1, 'boroda', 'korobko', 'boroda@example.com', 20, '2017-12-20 12:00:00', NULL),
-	(2, 'kate', 'ivasishina', 'kate@example.com', 21, '2017-12-20 12:00:00', NULL),
-	(3, 'sidor', 'sidorov', 'sidorov@example.com', 32, '2017-12-20 12:00:00', NULL),
-	(4, 'vasya', 'pupkin', 'pupkin@example.com', 22, '2017-12-20 12:00:00', NULL),
-	(5, 'vlad', 'chernysh', 'chernysh@example.com', 21, '2017-12-20 12:00:00', NULL),
-	(6, 'picachu', 'pokemon', 'pikapika@example.com', 25, '2017-12-20 12:00:00', NULL),
-	(7, 'darth', 'vader', 'vader@empire.com', 46, '2017-12-20 12:00:00', NULL),
-	(8, 'ololo', 'ololoev', 'ololo@example.com', 9, '2017-12-20 12:00:00', NULL);
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `birth_date`, `created_at`, `updated_at`) VALUES
+	(1, 'boroda', 'korobko', 'boroda@example.com', '1999-12-24 19:23:59', '2015-12-20 12:00:00', NULL),
+	(2, 'kate', 'ivasishina', 'kate@example.com', '2000-12-24 19:24:07', '2016-12-20 12:00:00', NULL),
+	(3, 'sidor', 'sidorov', 'sidorov@example.com', '2001-12-24 19:24:12', '2017-12-20 12:00:00', NULL),
+	(4, 'vasya', 'pupkin', 'pupkin@example.com', '2002-12-24 19:24:16', '2015-12-20 12:00:00', NULL),
+	(5, 'vlad', 'chernysh', 'chernysh@example.com', '1999-12-24 19:23:59', '2016-12-20 12:00:00', NULL),
+	(6, 'picachu', 'pokemon', 'pikapika@example.com', '2000-12-24 19:24:07', '2017-12-20 12:00:00', NULL),
+	(7, 'darth', 'vader', 'vader@empire.com', '2001-12-24 19:24:12', '2015-12-20 12:00:00', NULL),
+	(8, 'ololo', 'ololoev', 'ololo@example.com', '2002-12-24 19:24:16', '2016-12-20 12:00:00', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Дамп структуры для таблица kalenyuk-mysql-task-db.user_interests
@@ -75,7 +73,6 @@ CREATE TABLE IF NOT EXISTS `user_interests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы kalenyuk-mysql-task-db.user_interests: ~10 rows (приблизительно)
-DELETE FROM `user_interests`;
 /*!40000 ALTER TABLE `user_interests` DISABLE KEYS */;
 INSERT INTO `user_interests` (`user_id`, `interests_id`, `created_at`, `updated_at`) VALUES
 	(1, 1, NULL, NULL),
