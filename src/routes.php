@@ -17,9 +17,23 @@ return [
 
             $params = $request['params'];
 
-//            if (isset($params['birth-date']['from'])) {
-//                $query = $query->where('birth_date', '>=', $params['birth-date']['from']);
-//            }
+            // TODO: last_name, email
+
+            if (!empty($params['birth-date']['from'])) {
+                $query = $query->where('birth_date', '>=', $params['birth-date']['from']);
+            }
+
+            if (!empty($params['birth-date']['to'])) {
+                $query = $query->where('birth_date', '<=', $params['birth-date']['to']);
+            }
+
+            if (!empty($params['created-at']['from'])) {
+                $query = $query->where('created_at', '>=', $params['created-at']['from']);
+            }
+
+            if (!empty($params['created-at']['to'])) {
+                $query = $query->where('created_at', '<=', $params['created-at']['to']);
+            }
 
             $users = $query->get();
 

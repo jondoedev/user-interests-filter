@@ -23,14 +23,14 @@
 
                 <div>
                     <div>Min:</div>
-                    <input type="date" name="reg-date[from]"
-                           value="<?= isset($params['reg-date']['from']) ? $params['reg-date']['from'] : '' ?>">
+                    <input type="date" name="created-at[from]"
+                           value="<?= isset($params['created-at']['from']) ? $params['created-at']['from'] : '' ?>">
                 </div>
 
                 <div>
                     <div>Max:</div>
-                    <input type="date" name="reg-date[to]"
-                           value="<?= isset($params['reg-date']['to']) ? $params['reg-date']['to'] : '' ?>">
+                    <input type="date" name="created-at[to]"
+                           value="<?= isset($params['created-at']['to']) ? $params['created-at']['to'] : '' ?>">
                 </div>
             </div>
             <div class="form-group">
