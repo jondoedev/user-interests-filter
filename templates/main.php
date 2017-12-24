@@ -8,14 +8,14 @@
 
                 <div>
                     <div>Min: </div>
-                    <input type="date" name="birthDateFrom"
-                           value="<?= isset($params['birthDateFrom']) ? $params['birthDateFrom'] : '' ?>">
+                    <input type="date" name="birth-date[from]"
+                           value="<?= isset($params['birth-date[from]']) ? $params['birth-date[from]'] : '' ?>">
                 </div>
 
                 <div>
                     <div>Max:</div>
-                    <input type="date" name="birthDateTo"
-                           value="<?= isset($params['birthDateTo']) ? $params['birthDateTo'] : '' ?>">
+                    <input type="date" name="birth-date[to]"
+                           value="<?= isset($params['birth-date[to]']) ? $params['birth-date[to]'] : '' ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -23,14 +23,14 @@
 
                 <div>
                     <div>Min:</div>
-                    <input type="date" name="regDateFrom"
-                           value="<?= isset($params['regDateFrom']) ? $params['regDateFrom'] : '' ?>">
+                    <input type="date" name="reg-date[from]"
+                           value="<?= isset($params['reg-date[from]']) ? $params['reg-date[from]'] : '' ?>">
                 </div>
 
                 <div>
                     <div>Max:</div>
-                    <input type="date" name="regDateTo"
-                           value="<?= isset($params['regDateTo']) ? $params['regDateTo'] : '' ?>">
+                    <input type="date" name="reg-date[to]"
+                           value="<?= isset($params['reg-date[to]']) ? $params['reg-date[to]'] : '' ?>">
                 </div>
             </div>
             <div class="form-group">
