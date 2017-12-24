@@ -4,6 +4,12 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="form-group">
+                <div><b>First name</b></div>
+                <input name="first_name"
+                       value="<?= isset($params['first_name']) ? $params['first_name'] : '' ?>">
+            </div>
+
+            <div class="form-group">
                 <div><b>Birth Day</b></div>
 
                 <div>

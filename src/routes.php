@@ -19,6 +19,10 @@ return [
 
             // TODO: last_name, email
 
+            if (!empty($params['first_name'])) {
+                $query = $query->where('first_name', 'LIKE', '%' . $params['first_name'] . '%');
+            }
+
             if (!empty($params['birth-date']['from'])) {
                 $query = $query->where('birth_date', '>=', $params['birth-date']['from']);
             }
