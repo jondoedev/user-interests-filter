@@ -2,35 +2,50 @@
 
 <form method="GET">
     <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
+        <div class="col-sm-3">
             <div class="form-group">
-                <label for="birthDateMin">Birth Day Min:</label>
-                <input type="date" name="birthDateFrom" value="">
-                <label for="birthDateMax">Max:</label>
-                <input type="date" name="birthDateTo" value="">
-            </div>
-            <div class="form-group">
-                <label for="regDateMin">Registration On Min:</label>
-                <input type="date" name="regDateFrom" value="">
-                <label for="regDateMax">Max:</label>
-                <input type="date" name="regDateTo" value="">
-            </div>
-            <div class="form-group">
-                <label for="interest">Interests: </label>
+                <div><b>Birth Day</b></div>
+
                 <div>
-                    <ul>
-                        <?php foreach ($interests as $interest) { ?>
-                            <label>
-                                <?= $interest->name ?><br>
-                                <input type="checkbox" name="interest" value="<?= $interest->id ?>"/>
-                            </label>
-                        <?php } ?>
-                    </ul>
+                    <div>Min: </div>
+                    <input type="date" name="birthDateFrom" value="">
+                </div>
+
+                <div>
+                    <div>Max:</div>
+                    <input type="date" name="birthDateTo" value="">
                 </div>
             </div>
-            <div class="form-group col-md-offset-5">
-                <button type="submit" class="btn btn-primary">Filter</button>
+            <div class="form-group">
+                <div><b>Registration On</b></div>
+
+                <div>
+                    <div>Min:</div>
+                    <input type="date" name="regDateFrom" value="">
+                </div>
+
+                <div>
+                    <div>Max:</div>
+                    <input type="date" name="regDateTo" value="">
+                </div>
             </div>
+            <div class="form-group">
+                <div><b>Interests</b></div>
+                <?php foreach ($interests as $interest) { ?>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="interest" value="<?= $interest->id ?>"/>
+                            <?= $interest->name ?><br>
+                        </label>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Filter</button>
+            </div>
+        </div>
+        <div class="col-sm-9">
+
         </div>
     </div>
 </form>
