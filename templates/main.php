@@ -8,12 +8,14 @@
 
                 <div>
                     <div>Min: </div>
-                    <input type="date" name="birthDateFrom" value="">
+                    <input type="date" name="birthDateFrom"
+                           value="<?= isset($params['birthDateFrom']) ? $params['birthDateFrom'] : '' ?>">
                 </div>
 
                 <div>
                     <div>Max:</div>
-                    <input type="date" name="birthDateTo" value="">
+                    <input type="date" name="birthDateTo"
+                           value="<?= isset($params['birthDateTo']) ? $params['birthDateTo'] : '' ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -21,12 +23,14 @@
 
                 <div>
                     <div>Min:</div>
-                    <input type="date" name="regDateFrom" value="">
+                    <input type="date" name="regDateFrom"
+                           value="<?= isset($params['regDateFrom']) ? $params['regDateFrom'] : '' ?>">
                 </div>
 
                 <div>
                     <div>Max:</div>
-                    <input type="date" name="regDateTo" value="">
+                    <input type="date" name="regDateTo"
+                           value="<?= isset($params['regDateTo']) ? $params['regDateTo'] : '' ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -34,7 +38,9 @@
                 <?php foreach ($interests as $interest) { ?>
                     <div>
                         <label>
-                            <input type="checkbox" name="interest" value="<?= $interest->id ?>"/>
+                            <input type="checkbox" name="interests[]" value="<?= $interest->id ?>"
+                                   <?= (isset($params['interests']) && in_array($interest->id, $params['interests'])) ? 'checked' : '' ?>
+                            />
                             <?= $interest->name ?><br>
                         </label>
                     </div>

@@ -14,7 +14,8 @@ return [
         'handler' => function($request){
             $interests = Interest::all();
             return App::render('main', [
-                'interests' => $interests
+                'interests' => $interests,
+                'params' => $request['params']
             ]);
         }
     ],
