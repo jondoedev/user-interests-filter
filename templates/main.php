@@ -44,8 +44,8 @@
                 <?php foreach ($interests as $interest) { ?>
                     <div>
                         <label>
-                            <input type="checkbox" name="interests[]" value="<?= $interest->id ?>"
-                                   <?= (isset($params['interests']) && in_array($interest->id, $params['interests'])) ? 'checked' : '' ?>
+                            <input type="checkbox" name="interest-ids[]" value="<?= $interest->id ?>"
+                                   <?= (isset($params['interest-ids']) && in_array($interest->id, $params['interest-ids'])) ? 'checked' : '' ?>
                             />
                             <?= $interest->name ?><br>
                         </label>

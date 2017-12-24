@@ -39,6 +39,12 @@ return [
                 $query = $query->where('created_at', '<=', $params['created-at']['to']);
             }
 
+            if (!empty($params['interest-ids'])) {
+                $query = $query->whereHas('user_interests', function($query) use ($params) {
+                    $query->whereIn('user_interests.interest_id', $params['interest-ids']);
+                });
+            }
+
             $users = $query->get();
 
             $interests = Interest::all();

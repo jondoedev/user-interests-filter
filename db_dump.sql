@@ -37,6 +37,25 @@ INSERT INTO `interests` (`id`, `name`, `created_at`, `updated_at`) VALUES
 	(7, 'alcohol', NULL, NULL);
 /*!40000 ALTER TABLE `interests` ENABLE KEYS */;
 
+-- Дамп структуры для таблица kalenyuk-mysql-task-db.posts
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `body` text,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK__users` (`user_id`),
+  CONSTRAINT `FK__users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- Дамп данных таблицы kalenyuk-mysql-task-db.posts: ~4 rows (приблизительно)
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` (`id`, `body`, `user_id`) VALUES
+	(1, 'post 11', 1),
+	(2, 'post 12', 1),
+	(3, 'post 21', 2),
+	(4, 'post 22', 2);
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+
 -- Дамп структуры для таблица kalenyuk-mysql-task-db.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -54,27 +73,27 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `birth_date`, `created_at`, `updated_at`) VALUES
 	(1, 'boroda', 'korobko', 'boroda@example.com', '1999-12-24 19:23:59', '2015-12-20 12:00:00', NULL),
 	(2, 'kate', 'ivasishina', 'kate@example.com', '2000-12-24 19:24:07', '2016-12-20 12:00:00', NULL),
-	(3, 'sidor', 'sidorov', 'sidorov@example.com', '2001-12-24 19:24:12', '2017-12-20 12:00:00', NULL),
+	(3, 'vladislav', 'sidorov', 'sidorov@example.com', '2001-12-24 19:24:12', '2017-12-20 12:00:00', NULL),
 	(4, 'vasya', 'pupkin', 'pupkin@example.com', '2002-12-24 19:24:16', '2015-12-20 12:00:00', NULL),
 	(5, 'vlad', 'chernysh', 'chernysh@example.com', '1999-12-24 19:23:59', '2016-12-20 12:00:00', NULL),
 	(6, 'picachu', 'pokemon', 'pikapika@example.com', '2000-12-24 19:24:07', '2017-12-20 12:00:00', NULL),
 	(7, 'darth', 'vader', 'vader@empire.com', '2001-12-24 19:24:12', '2015-12-20 12:00:00', NULL),
-	(8, 'ololo', 'ololoev', 'ololo@example.com', '2002-12-24 19:24:16', '2016-12-20 12:00:00', NULL);
+	(8, 'vladik', 'ololoev', 'ololo@example.com', '2002-12-24 19:24:16', '2016-12-20 12:00:00', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Дамп структуры для таблица kalenyuk-mysql-task-db.user_interests
 CREATE TABLE IF NOT EXISTS `user_interests` (
   `user_id` int(11) NOT NULL,
-  `interests_id` int(11) NOT NULL,
+  `interest_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  KEY `interests_id` (`interests_id`),
+  KEY `interests_id` (`interest_id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы kalenyuk-mysql-task-db.user_interests: ~10 rows (приблизительно)
 /*!40000 ALTER TABLE `user_interests` DISABLE KEYS */;
-INSERT INTO `user_interests` (`user_id`, `interests_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `user_interests` (`user_id`, `interest_id`, `created_at`, `updated_at`) VALUES
 	(1, 1, NULL, NULL),
 	(1, 3, NULL, NULL),
 	(2, 2, NULL, NULL),

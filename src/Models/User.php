@@ -6,4 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model {
     protected $guarded = array();
+
+    public function user_interests()
+    {
+        return $this->hasMany('App\Models\UserInterest');
+    }
 }
