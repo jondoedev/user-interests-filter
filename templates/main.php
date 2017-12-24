@@ -1,7 +1,4 @@
-<?php require_once __DIR__ . '/_header.php';
-require_once __DIR__ . '/../src/App.php';
-require_once __DIR__ . '/../src/routes.php';
-?>
+<?php require_once __DIR__ . '/_header.php'; ?>
 
 <form method="GET">
     <div class="row">
@@ -23,8 +20,10 @@ require_once __DIR__ . '/../src/routes.php';
                 <div>
                     <ul>
                         <?php foreach ($interests as $interest) { ?>
-                            <input type="checkbox" name="interest" value="<?= $interest->id ?>"/>
-                            <?= $interest->name ?><br>
+                            <label>
+                                <?= $interest->name ?><br>
+                                <input type="checkbox" name="interest" value="<?= $interest->id ?>"/>
+                            </label>
                         <?php } ?>
                     </ul>
                 </div>
@@ -35,4 +34,3 @@ require_once __DIR__ . '/../src/routes.php';
         </div>
     </div>
 </form>
-</div>
