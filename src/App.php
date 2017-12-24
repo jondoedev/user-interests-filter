@@ -11,18 +11,46 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Rakit\Validation\Validator;
 
+use Illuminate\Events\Dispatcher;
+use Illuminate\Container\Container;
+
 class App
 {
     public static $config;
     public static $errors;
+    public static $db;
 
 
     public static function init()
     {
 
         self::$config = require_once(__DIR__ . '/../config.php');
-        // init Eloquent ORM
-        $capsule = new Capsule;
+
+        $container = new Container;
+        $dispatcher = new Dispatcher;
+        $container['events'] = $dispatcher;
+
+        /* BEGIN setup Eloquent logging */
+        $dispatcher->listen('Illuminate\Database\Events\QueryExecuted', function ($event) {
+            $msg =  "== SQL: ".$event->sql."\n";
+            $msg .= "== Params: ".join(', ', $event->bindings);
+            $msg .= "\n\n";
+//
+//            // if code is executed in CLI, echo message
+//            if (php_sapi_name() == 'cli') {
+//                echo $msg;
+//            }
+//            // if code executed by server, log message so stderr
+//            else {
+                $msg = "[".date("Y-m-d H:i:s")."]\n" . $msg;
+                file_put_contents(__DIR__.'/../db.log', $msg, FILE_APPEND); // log into file
+//                error_log($msg); // log into stderr. usable in php builtin server
+//            }
+        });
+        /* END setup Eloquent logging */
+
+        /* BEGIN init Eloquent ORM */
+        $capsule = new Capsule($container);
         $capsule->addConnection([
                 'driver' => 'mysql',
                 'charset' => 'utf8',
@@ -32,6 +60,9 @@ class App
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
         date_default_timezone_set(self::$config['timezone']);
+        self::$db = $capsule->getConnection();
+        /* END init Eloquent ORM */
+
     }
 
     public static function url($relative_url)

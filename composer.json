@@ -1,6 +1,9 @@
 {
   "require": {
-    "illuminate/database": "4.2.*",
+    "illuminate/database": "5.3",
+    "doctrine/dbal": "2.5",
+    "illuminate/events": "5.3",
+
     "rakit/validation": "^0.13.1",
     "twbs/bootstrap": "^3.3"
 
