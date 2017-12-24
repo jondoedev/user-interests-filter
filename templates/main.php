@@ -9,13 +9,13 @@
                 <div>
                     <div>Min: </div>
                     <input type="date" name="birth-date[from]"
-                           value="<?= isset($params['birth-date[from]']) ? $params['birth-date[from]'] : '' ?>">
+                           value="<?= isset($params['birth-date']['from']) ? $params['birth-date']['from'] : '' ?>">
                 </div>
 
                 <div>
                     <div>Max:</div>
                     <input type="date" name="birth-date[to]"
-                           value="<?= isset($params['birth-date[to]']) ? $params['birth-date[to]'] : '' ?>">
+                           value="<?= isset($params['birth-date']['to']) ? $params['birth-date']['to'] : '' ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -24,13 +24,13 @@
                 <div>
                     <div>Min:</div>
                     <input type="date" name="reg-date[from]"
-                           value="<?= isset($params['reg-date[from]']) ? $params['reg-date[from]'] : '' ?>">
+                           value="<?= isset($params['reg-date']['from']) ? $params['reg-date']['from'] : '' ?>">
                 </div>
 
                 <div>
                     <div>Max:</div>
                     <input type="date" name="reg-date[to]"
-                           value="<?= isset($params['reg-date[to]']) ? $params['reg-date[to]'] : '' ?>">
+                           value="<?= isset($params['reg-date']['to']) ? $params['reg-date']['to'] : '' ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -51,7 +51,30 @@
             </div>
         </div>
         <div class="col-sm-9">
+            <?php foreach ($users as $user) { ?>
+                <div>
+                    <b>First name</b>
+                    <?= $user->first_name; ?>
+                </div>
+                <div>
+                    <b>Last name</b>
+                    <?= $user->last_name; ?>
+                </div>
+                <div>
+                    <b>Email</b>
+                    <?= $user->email; ?>
+                </div>
+                <div>
+                    <b>Birth date</b>
+                    <?= $user->birth_date; ?>
+                </div>
+                <div>
+                    <b>Registration date</b>
+                    <?= $user->created_at; ?>
+                </div>
 
+                <hr>
+            <?php } ?>
         </div>
     </div>
 </form>

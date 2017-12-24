@@ -6,16 +6,28 @@ use App\Models\UserInterest;
 use App\Models\Interest;
 use Rakit\Validation\Validator as Validator;
 
+
 return [
 
     [
         'method' => 'GET',
         'pattern' => '/',
         'handler' => function($request){
+            $query = User::query();
+
+            $params = $request['params'];
+
+//            if (isset($params['birth-date']['from'])) {
+//                $query = $query->where('birth_date', '>=', $params['birth-date']['from']);
+//            }
+
+            $users = $query->get();
+
             $interests = Interest::all();
             return App::render('main', [
                 'interests' => $interests,
-                'params' => $request['params']
+                'params' => $params,
+                'users' => $users
             ]);
         }
     ],
