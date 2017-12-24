@@ -35,17 +35,10 @@ class App
             $msg =  "== SQL: ".$event->sql."\n";
             $msg .= "== Params: ".join(', ', $event->bindings);
             $msg .= "\n\n";
-//
-//            // if code is executed in CLI, echo message
-//            if (php_sapi_name() == 'cli') {
-//                echo $msg;
-//            }
-//            // if code executed by server, log message so stderr
-//            else {
-                $msg = "[".date("Y-m-d H:i:s")."]\n" . $msg;
-                file_put_contents(__DIR__.'/../db.log', $msg, FILE_APPEND); // log into file
-//                error_log($msg); // log into stderr. usable in php builtin server
-//            }
+            $msg = "[".date("Y-m-d H:i:s")."]\n" . $msg;
+
+            file_put_contents(__DIR__.'/../db.log', $msg, FILE_APPEND); // log into file
+            error_log($msg); // log into stderr. usable in php builtin server and PsySH
         });
         /* END setup Eloquent logging */
 

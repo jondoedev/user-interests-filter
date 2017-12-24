@@ -4,8 +4,11 @@
     "doctrine/dbal": "2.5",
     "illuminate/events": "5.3",
 
+    "psy/psysh": "^0.8.0",
+
     "rakit/validation": "^0.13.1",
     "twbs/bootstrap": "^3.3"
+
 
   },
   "autoload": {
