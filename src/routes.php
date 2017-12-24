@@ -24,11 +24,7 @@ return [
             $users = $query->get();
 
             $interests = Interest::all();
-            return App::render('main', [
-                'interests' => $interests,
-                'params' => $params,
-                'users' => $users
-            ]);
+            return App::render('main', compact('interests', 'params', 'users'));
         }
     ],
 
