@@ -31,16 +31,6 @@
                 </button>
                 <a class="navbar-brand" href="<?= App\App::url('/') ?>"><img src="<?= App\App::url('/img/logo.png') ?>" style="max-height: 100%"></a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right" style="margin-top: 15px;">
-                        <li><a href="<?= App\App::url('/sign-in') ?>">
-                                <button type="submit" class="btn btn-primary col-md-offset-1">Sign In</button>
-                            </a></li>
-                        <li><a href="<?= App\App::url('/sign-up') ?>">
-                                <button type="submit" class="btn btn-primary col-md-offset-1">Register</button>
-                            </a></li>
-                </ul>
-            </div>
         </div>
     </nav>
 

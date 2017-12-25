@@ -6,14 +6,24 @@
             <div class="form-group">
                 <div><b>First name</b></div>
                 <input name="first_name"
-                       value="<?= isset($params['first_name']) ? $params['first_name'] : '' ?>">
+                       value="<?= isset($params['first-name']) ? $params['first-name'] : '' ?>">
+            </div>
+            <div class="form-group">
+                <div><b>Last name</b></div>
+                <input name="last_name"
+                       value="<?= isset($params['last-name']) ? $params['last-name'] : '' ?>">
+            </div>
+            <div class="form-group">
+                <div><b>Email</b></div>
+                <input name="email"
+                       value="<?= isset($params['email']) ? $params['email'] : '' ?>">
             </div>
 
             <div class="form-group">
                 <div><b>Birth Day</b></div>
 
                 <div>
-                    <div>Min: </div>
+                    <div>Min:</div>
                     <input type="date" name="birth-date[from]"
                            value="<?= isset($params['birth-date']['from']) ? $params['birth-date']['from'] : '' ?>">
                 </div>
@@ -45,7 +55,7 @@
                     <div>
                         <label>
                             <input type="checkbox" name="interest-ids[]" value="<?= $interest->id ?>"
-                                   <?= (isset($params['interest-ids']) && in_array($interest->id, $params['interest-ids'])) ? 'checked' : '' ?>
+                                <?= (isset($params['interest-ids']) && in_array($interest->id, $params['interest-ids'])) ? 'checked' : '' ?>
                             />
                             <?= $interest->name ?><br>
                         </label>
@@ -77,6 +87,12 @@
                 <div>
                     <b>Registration date</b>
                     <?= $user->created_at; ?>
+                </div>
+                <div>
+                    <b>Interests: </b>
+                    <?php foreach ($user->interests as $interest) { ?>
+                        <?= $interest->name . ', '; ?>
+                    <?php } ?>
                 </div>
 
                 <hr>

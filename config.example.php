@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'base_url' => '',
+    'base_url' => 'mySite/user-interests-filter/public',
     'timezone' => 'Europe/Kiev',
     'db' => [
         'host' => 'localhost',

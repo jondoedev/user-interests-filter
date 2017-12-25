@@ -17,12 +17,27 @@ return [
 
             $params = $request['params'];
 
-            // TODO: last_name, email
-
+            /**
+             * Filter by firstname
+             */
             if (!empty($params['first_name'])) {
                 $query = $query->where('first_name', 'LIKE', '%' . $params['first_name'] . '%');
             }
-
+            /**
+             * Filter by lastname
+             */
+            if (!empty($params['last_name'])) {
+                $query = $query->where('last_name', 'LIKE', '%' . $params['last_name'] . '%');
+            }
+            /**
+             * Filter by email
+             */
+            if (!empty($params['email'])) {
+                $query = $query->where('email', 'LIKE', '%' . $params['email'] . '%');
+            }
+            /**
+             * Filter by birth date From-TO
+             */
             if (!empty($params['birth-date']['from'])) {
                 $query = $query->where('birth_date', '>=', $params['birth-date']['from']);
             }
@@ -30,7 +45,9 @@ return [
             if (!empty($params['birth-date']['to'])) {
                 $query = $query->where('birth_date', '<=', $params['birth-date']['to']);
             }
-
+            /**
+             * Filter by registration date From-TO
+             */
             if (!empty($params['created-at']['from'])) {
                 $query = $query->where('created_at', '>=', $params['created-at']['from']);
             }
@@ -39,51 +56,30 @@ return [
                 $query = $query->where('created_at', '<=', $params['created-at']['to']);
             }
 
+
+//            if (!empty($params['interest-ids'])) {
+//                $query = $query->whereHas('user_interests', function($query) use ($params) {
+//                    $query->whereIn('user_interests.interest_id', $params['interest-ids']);
+//                });
+//            }
+
+            /**
+             * Filter by interests
+            */
             if (!empty($params['interest-ids'])) {
-                $query = $query->whereHas('user_interests', function($query) use ($params) {
-                    $query->whereIn('user_interests.interest_id', $params['interest-ids']);
-                });
+                foreach ($params['interest-ids'] as $interest_id) {
+                    $query = $query->whereHas('user_interests', function($query) use ($interest_id) {
+                        $query->where('user_interests.interest_id', $interest_id);
+                    });
+                }
             }
 
-            $users = $query->get();
 
+            $users = $query->get();
             $interests = Interest::all();
             return App::render('main', compact('interests', 'params', 'users'));
         }
     ],
-
-    [
-        'method' => 'GET',
-        'pattern' => '/sign-up',
-        'handler' => function($request){
-            $errors = [];
-            $rules = [
-                'email' => 'required|email',
-                'login' => 'required|min:6',
-                'password' => 'required|min:6',
-                'password2' => 'required|same:password',
-                'agree' => 'required',
-            ];
-            if ($request['info']['REQUEST_METHOD'] == 'POST') {
-                list($clean_params, $errors) = App::validator($request['params'], $rules);
-                /* validate DB fields */
-                if (User::where('login', $clean_params['login'])->count()) { $errors['login'] = 'Login must be unique'; }
-                if (User::where('email', $clean_params['email'])->count()) { $errors['email'] = 'Email must be unique'; }
-                if (!$errors) {
-                    $user = User::create($clean_params);
-                    $_SESSION['user'] = $user;
-                    return App::redirect('/');
-                }
-            }
-            return App::render('signup', [
-                'errors' => $errors,
-                'params'  => $request['params'],
-            ]);
-        }
-    ]
-
-
-
 
 
 ];

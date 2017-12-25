@@ -11,4 +11,8 @@ class User extends Model {
     {
         return $this->hasMany('App\Models\UserInterest');
     }
+
+    public function interests(){
+        return $this->belongsToMany('App\Models\Interest','user_interests');
+    }
 }
